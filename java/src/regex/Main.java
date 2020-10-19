@@ -1,21 +1,20 @@
 package regex;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.*;
 
 public class Main {
 	
 	public static void main(String... args) {
-		//flag g - global
-		//flag i - ignora o case sensitive
+		String texto = "0,1,2,3,4,5,6,7,9,a,b,c,d,e,f";
 		
-		String text = "Eu joguei o jogo do jeito errado";
+		Pattern patternLetras = Pattern.compile("[a-f]");
+		Matcher matcher = patternLetras.matcher(texto);
+		
+		while(matcher.find()) 
+			System.out.printf("Posicoes: %s, %s\t Valor: %s%n", matcher.start(), matcher.end(), matcher.group());
 		
 		
-		Pattern pattern = Pattern.compile("e|er", Pattern.CASE_INSENSITIVE);
-		Matcher matcher = pattern.matcher(text);
-		if(matcher.find())
-			System.out.println("Existe essa letra");
+		System.out.println(texto.replaceAll("[7-9]", "Achei"));
 		
 	}
 
