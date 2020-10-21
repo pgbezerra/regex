@@ -8,14 +8,25 @@ public class Main {
 	public static void main(String... args) {
 
 
-		String texto = "a   b";
+		String texto = "Bom\ndia";
 		
-		Pattern pattern = Pattern.compile("a\s\s\sb");
+		Pattern pattern = Pattern.compile("...");
 		Matcher matcher = pattern.matcher(texto);
 		
 		while(matcher.find())
 			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(), matcher.end()));
+		
+		pattern = Pattern.compile("....");
+		matcher = pattern.matcher(texto);
+		
+		while(matcher.find())  //o ponto n encontra o \n
+			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(), matcher.end()));
 
+		pattern = Pattern.compile("....", Pattern.DOTALL);
+		matcher = pattern.matcher(texto);
+		
+		while(matcher.find()) 
+			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(), matcher.end()));
 		
 
 		
