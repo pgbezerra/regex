@@ -10,55 +10,17 @@ public class Main {
 
 		// . é um coringa, ou seja pega qualquer caractere, valido para uma posicao
 
-		String texto = "1,2,3,4,5,6,7,8,9,0";
+		String texto = "lista de arquivos mp3: jazz.mp3,rock.mp3,podcast.mp3,blues.mp3";
 
-		Pattern pattern = Pattern.compile("1.2");
+		Pattern pattern = Pattern.compile("\\.mp3");
 		Matcher matcher = pattern.matcher(texto);
+		
+		System.out.println("QUANTAS REFERENCIAS DE .mp3 EXISTE NO TEXTO?");
+		
+		while(matcher.find())
+			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(), matcher.end()));
 
-		System.out.println("\t\t\t\tENCONTRANDO UM GRUPO USANDO UM PONTO");
-		while (matcher.find())
-			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
-					matcher.end()));
-
-		System.out.println();
-		System.out.println("\t\t\t\tNÃO ENCONTRANDO UM GRUPO USANDO DOIS PONTOS");
-
-		pattern = Pattern.compile("1..2");
-		matcher = pattern.matcher(texto);
-
-		while (matcher.find())
-			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
-					matcher.end()));
-
-		System.out.println();
-		System.out.println("\t\t\t\tENCONTRANDO UM GRUPO USANDO DOIS PONTOS");
-		pattern = Pattern.compile("1..,");
-		matcher = pattern.matcher(texto);
-
-		while (matcher.find())
-			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
-					matcher.end()));
-
-		System.out.println();
-		System.out
-				.println("\t\t\t\tBUSCANDO COM PONTOS NO LUGAR, ONDE O META CARACTERE . TAMBEM VALE PARA O . LITERAL");
-
-		String notas = "8.3,7.1,8.8,10.0";
-		pattern = Pattern.compile("8..");
-		matcher = pattern.matcher(notas);
-		while (matcher.find())
-			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
-					matcher.end()));
-
-		System.out
-				.println("\t\t\t\tBUSCANDO COM PONTOS NO LUGAR, ONDE O META CARACTERE . É USADO DE FORMA LITERAL");
-
-		pattern = Pattern.compile(".\\..");
-		matcher = pattern.matcher(notas);
-		while (matcher.find())
-			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
-					matcher.end()));
-
+		
 	}
 
 }
