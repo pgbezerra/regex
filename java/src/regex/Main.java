@@ -8,9 +8,9 @@ public class Main {
 	public static void main(String... args) {
 
 
-		String texto = "\nca	r\nr	o s!\n";
+		String texto = "a   b";
 		
-		Pattern pattern = Pattern.compile("ca\tr\nr\to\ss!");
+		Pattern pattern = Pattern.compile("a\s\s\sb");
 		Matcher matcher = pattern.matcher(texto);
 		
 		while(matcher.find())
