@@ -8,74 +8,35 @@ public class Main {
 
 	public static void main(String... args) {
 
+		// . ? * + - ^ $ | [] {} () \ :
+
 		String texto = "1,2,3,4,5,6,a.b c!d?e";
 
-		// valores literais o regex busca os literias flag G busca todas as ocorrencias
-		// (n consegui aplicar agora no JAVA)
-		String regex = ",";
+		String regex = "\\.";
 
-		StringJoiner joiner = new StringJoiner(", ", "[", "]");
-		for (String s : texto.split(regex))
+		System.out.println("\t\t\t\tUSANDO UM METACARACTERE EM FORMA LITERAL");
+
+		String[] textoDividido = texto.split(regex);
+
+		StringJoiner joiner = new StringJoiner(",", "[", "]");
+
+		for (String s : textoDividido)
 			joiner.add(s);
-
-		System.out.println("\t\t\t\tLIPT");
 
 		System.out.println(joiner.toString());
 
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(texto);
-
-		System.out.println("\t\t\t\tENCONTRA O PRIMEIRO");
-
-		if (matcher.find())
-			System.out.printf("Posicoes: %s, %s\t Valor: %s%n", matcher.start(), matcher.end(), matcher.group());
-
 		System.out.println();
+		System.out.println("\t\t\t\tUSANDO VARIOS METACARACTERE EM FORMA LITERAL");
 
-		System.out.println("\t\t\t\tENCONTRA TODAS VIRGULAS");
+		textoDividido = texto.split(",|\\.|\\?|!| ");
 
-		pattern = Pattern.compile(regex);
-		matcher = pattern.matcher(texto);
+		joiner = new StringJoiner(",", "[", "]");
 
-		while (matcher.find())
-			System.out.printf("Posicoes: %s, %s\t Valor: %s%n", matcher.start(), matcher.end(), matcher.group());
+		for (String s : textoDividido)
+			joiner.add(s);
 
-		System.out.println();
-
-		System.out.println("\t\t\t\tTENTA BUSCAR A OCORRENCIAS DA LETRA\"A\" MAISCULA SEM O CASE INSENSISIVE");
-
-		matcher = Pattern.compile("A").matcher(texto);
-
-		while (matcher.find())
-			System.out.printf("Posicoes: %s, %s\t Valor: %s%n", matcher.start(), matcher.end(), matcher.group());
-
-		System.out.println();
-
-		System.out.println("\t\t\t\tTENTA BUSCAR A OCORRENCIAS DA LETRA\"A\" MAISCULA COM O CASE INSENSISIVE");
-
-		matcher = Pattern.compile("A", Pattern.CASE_INSENSITIVE).matcher(texto);
-
-		System.out.println();
-
-		while (matcher.find())
-			System.out.printf("Posicoes: %s, %s\t Valor: %s%n", matcher.start(), matcher.end(), matcher.group());
-
-		System.out.println();
-		System.out.println("\t\t\t\tBUSCA AS OCORRENCIAS DE UM NUMERO");
-
-		matcher = Pattern.compile("9").matcher(texto);
-
-		while (matcher.find())
-			System.out.printf("Posicoes: %s, %s\t Valor: %s%n", matcher.start(), matcher.end(), matcher.group());
-
-		System.out.println();
-		System.out.println("\t\t\t\tTEXTO LITERAL");
-
-		matcher = Pattern.compile("b c!d").matcher(texto);
-
-		while (matcher.find())
-			System.out.printf("Posicoes: %s, %s\t Valor: %s%n", matcher.start(), matcher.end(), matcher.group());
-
+		System.out.println(joiner.toString());
+		
 	}
 
 }
