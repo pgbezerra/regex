@@ -7,31 +7,44 @@ public class Main {
 
 	public static void main(String... args) {
 
+		String texto = "1,2,3,4,5,6,a.b c!d?e[f";
+		String regexPares = "[a-z]";
+		Pattern pattern = Pattern.compile(regexPares);
+		Matcher matcher = pattern.matcher(texto);
 
-		
-		
-		
-		String textoNumeros = "1,2,3,4,5,6,a.b c!d?e[f";
-		String regexPares = "[02468]";
-		Pattern patternNumeros = Pattern.compile(regexPares);
-		Matcher matcherNumeros = patternNumeros.matcher(textoNumeros);
-		
-		
-		System.out.println("--------------------------NUMEROS PARES----------------------");
-		
-		while(matcherNumeros.find())
-			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcherNumeros.group(), matcherNumeros.start(), matcherNumeros.end()));
-		
-		System.out.println("\n----------------------COM E SEM ACENTO-----------------");
-		
-		String textoLetras = "João não vai passear na moto.";
-		String regexComESemAcento = "n[aã]";
-		Pattern patternComESemAcento = Pattern.compile(regexComESemAcento);
-		Matcher matcherComESemAcento = patternComESemAcento.matcher(textoLetras);
-		
-		while(matcherComESemAcento.find())
-			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcherComESemAcento.group(), matcherComESemAcento.start(), matcherComESemAcento.end()));
-		
+		System.out.println("--------------------------PEGANDO LETRS EM UM INTERVALO----------------------");
+
+		while (matcher.find())
+			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
+					matcher.end()));
+
+		System.out.println("\n------------------INTERVALO MENOR DE LETRAS------------------");
+
+		pattern = Pattern.compile("[b-d]");
+		matcher = pattern.matcher(texto);
+
+		while (matcher.find())
+			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
+					matcher.end()));
+
+		System.out.println("\n------------------INTERVALO DE NUMEROS------------------");
+
+		pattern = Pattern.compile("[2-4]");
+		matcher = pattern.matcher(texto);
+
+		while (matcher.find())
+			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
+					matcher.end()));
+
+		System.out.println("\n------------------MISTURA DE LETRAS E NUMEROS------------------");
+
+		pattern = Pattern.compile("[A-Z1-3]", Pattern.CASE_INSENSITIVE);
+		matcher = pattern.matcher(texto);
+
+		while (matcher.find())
+			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
+					matcher.end()));
+
 	}
 
 }
