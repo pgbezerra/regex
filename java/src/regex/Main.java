@@ -10,29 +10,49 @@ public class Main {
 		String texto1 = "De longe eu avistei o fogo e uma pessoa gritando: FOGOOOOOO!";
 		String texto2 = "Threre is a big fog in NYC";
 
-		// ? -> zero ou um (opcional
+		// + -> um ou mais
 
 		Pattern pattern = null;
 		Matcher matcher = null;
 
 		System.out.println("----------------------QUANTIFICADORES------------------");
 
-		pattern = Pattern.compile("fogo?", Pattern.CASE_INSENSITIVE);
+		pattern = Pattern.compile("fogo+", Pattern.CASE_INSENSITIVE);
 		matcher = pattern.matcher(texto1);
 
 		System.out.println("\n----------------------TEXTO 1------------------");
 
 		while (matcher.find())
-			System.out.println(
-					String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(), matcher.end()));
+			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
+					matcher.end()));
 
 		matcher = pattern.matcher(texto2);
 
 		System.out.println("\n----------------------TEXTO 2------------------");
 
 		while (matcher.find())
-			System.out.println(
-					String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(), matcher.end()));
+			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
+					matcher.end()));
+
+		System.out.println("\n----------------------NUMEROS SEM O + ------------------");
+
+		String texto3 = "Os números: 0123456789.";
+
+		pattern = Pattern.compile("[0-9]", Pattern.CASE_INSENSITIVE);
+		matcher = pattern.matcher(texto3);
+
+		while (matcher.find())
+			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
+					matcher.end()));
+
+		System.out.println("\n----------------------NUMEROS COMM O + ------------------");
+
+		pattern = Pattern.compile("[0-9]+", Pattern.CASE_INSENSITIVE);
+		matcher = pattern.matcher(texto3);
+
+		while (matcher.find())
+			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
+					matcher.end()));
 
 	}
 
