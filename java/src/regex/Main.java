@@ -7,38 +7,59 @@ public class Main {
 
 	public static void main(String... args) {
 
-		String texto = "1,2,3,4,5,6,a.b c!d?e[f";
-		String regexPares = "[a-z]";
-		Pattern pattern = Pattern.compile(regexPares);
+		String texto = ".$+*?-";
+
+		
+		System.out.println("--------------------------CONJUNTO COM META CARACTERES----------------------");
+		
+		Pattern pattern = Pattern.compile("[+.?*$]");
 		Matcher matcher = pattern.matcher(texto);
 
-		System.out.println("--------------------------PEGANDO LETRS EM UM INTERVALO----------------------");
 
 		while (matcher.find())
 			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
 					matcher.end()));
+		System.out.println("--------------------------NÃO É NECESSARIO O ESCAPE PARA DIZER QUE SAO LITERAIS----------------------");
 
-		System.out.println("\n------------------INTERVALO MENOR DE LETRAS------------------");
+		System.out.println("\n------------------INTERVALO COM META CARACTERES------------------");
 
-		pattern = Pattern.compile("[b-d]");
+		pattern = Pattern.compile("[$-?]");
 		matcher = pattern.matcher(texto);
 
 		while (matcher.find())
 			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
 					matcher.end()));
 
-		System.out.println("\n------------------INTERVALO DE NUMEROS------------------");
+		System.out.println("\n------------------NEM SEMPRE FUNCIONAM COMO INTERVALO------------------");
 
-		pattern = Pattern.compile("[2-4]");
+		pattern = Pattern.compile("[$\\-?]");
 		matcher = pattern.matcher(texto);
 
 		while (matcher.find())
 			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
 					matcher.end()));
 
-		System.out.println("\n------------------MISTURA DE LETRAS E NUMEROS------------------");
+		System.out.println("\n------------------OUTRO EXEMPLO DE NÃO SER UM INTERVALO------------------");
 
-		pattern = Pattern.compile("[A-Z1-3]", Pattern.CASE_INSENSITIVE);
+		pattern = Pattern.compile("[-?]", Pattern.CASE_INSENSITIVE);
+		matcher = pattern.matcher(texto);
+
+		while (matcher.find())
+			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
+					matcher.end()));
+		
+		System.out.println("\n------------------OUTRO EXEMPLO DE NÃO SER UM INTERVALO------------------");
+
+		pattern = Pattern.compile("[-$?]", Pattern.CASE_INSENSITIVE);
+		matcher = pattern.matcher(texto);
+
+		while (matcher.find())
+			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
+					matcher.end()));
+		
+		System.out.println("\n------------------PODE PRECISAR DE ESCAPE [] - ^ ------------------");
+
+		pattern = Pattern.compile("[\\[\\-\\^\\]]", Pattern.CASE_INSENSITIVE);
 		matcher = pattern.matcher(texto);
 
 		while (matcher.find())
