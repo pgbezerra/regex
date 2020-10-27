@@ -7,48 +7,55 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		String texto1 = "De longe eu avistei o fogo e uma pessoa gritando: FOGOOOOOO!";
-		String texto2 = "Threre is a big fog in NYC";
+		String texto1 = "O João recebeu 120 milhões apostando 6 9 21 23 45 46";
 
-		// * -> um ou mais
+		// Para definir um quantificador vc utiliza a {}
 
 		Pattern pattern = null;
 		Matcher matcher = null;
 
-		System.out.println("----------------------QUANTIFICADORES------------------");
+		System.out.println("----------------------QUANTIFICADORES {}------------------");
 
-		pattern = Pattern.compile("fogo*", Pattern.CASE_INSENSITIVE);
+		pattern = Pattern.compile("\\d{1,2}", Pattern.CASE_INSENSITIVE);
 		matcher = pattern.matcher(texto1);
 
-		System.out.println("\n----------------------TEXTO 1------------------");
+		System.out.println("\n----------------------NUMEROS ENTRE 1 e 2 DIGITOS------------------");
 
 		while (matcher.find())
 			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
 					matcher.end()));
 
-		matcher = pattern.matcher(texto2);
+		System.out.println("\n----------------------NUMEROS APENAS COM 2 DIGITOS------------------");
 
-		System.out.println("\n----------------------TEXTO 2------------------");
-
-		while (matcher.find())
-			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
-					matcher.end()));
-
-		System.out.println("\n----------------------NUMEROS SEM O + ------------------");
-
-		String texto3 = "Os números: 0123456789.";
-
-		pattern = Pattern.compile("[0-9]", Pattern.CASE_INSENSITIVE);
-		matcher = pattern.matcher(texto3);
+		pattern = Pattern.compile("[0-9]{2}", Pattern.CASE_INSENSITIVE);
+		matcher = pattern.matcher(texto1);
 
 		while (matcher.find())
 			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
 					matcher.end()));
 
-		System.out.println("\n----------------------NUMEROS COMM O + ------------------");
+		System.out.println("\n----------------------NUMEROS COM 1 OU MAIS DIGITOS------------------");
 
-		pattern = Pattern.compile("[0-9]+", Pattern.CASE_INSENSITIVE);
-		matcher = pattern.matcher(texto3);
+		pattern = Pattern.compile("[0-9]{1,}", Pattern.CASE_INSENSITIVE);
+		matcher = pattern.matcher(texto1);
+
+		while (matcher.find())
+			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
+					matcher.end()));
+
+		System.out.println("\n----------------------CARACTERES COM 7 DIGITOS------------------");
+
+		pattern = Pattern.compile("\\w{7}", Pattern.CASE_INSENSITIVE);
+		matcher = pattern.matcher(texto1);
+
+		while (matcher.find())
+			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
+					matcher.end()));
+
+		System.out.println("\n----------------------CARACTERES COM 7 DIGITOS OU MAIS USANDO UNICODE------------------");
+
+		pattern = Pattern.compile("[\\wõ]{7,}", Pattern.CASE_INSENSITIVE);
+		matcher = pattern.matcher(texto1);
 
 		while (matcher.find())
 			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
