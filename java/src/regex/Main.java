@@ -14,14 +14,15 @@ public class Main {
 		Pattern pattern = null;
 		Matcher matcher = null;
 
-		System.out.println("----------------------DESAFIO TELEFONE------------------");
+		System.out.println("----------------------DESAFIO EMAIL------------------");
 
-		pattern = Pattern.compile("\\(?\\d{0,2}\\)?\s?\\d{4,5}-\\d{4}", Pattern.CASE_INSENSITIVE);
+		pattern = Pattern.compile("[\\w-.]{4,20}@[\\w.-]{2,50}\\.\\w+", Pattern.CASE_INSENSITIVE);
 		matcher = pattern.matcher(texto1);
 
 		while (matcher.find())
 			System.out.println(String.format("Encontrado %s na posicao %s ate %s", matcher.group(), matcher.start(),
 					matcher.end()));
+
 
 	}
 
