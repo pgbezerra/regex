@@ -10,14 +10,14 @@ public class Main {
 		String texto1 = "De longe eu avistei o fogo e uma pessoa gritando: FOGOOOOOO!";
 		String texto2 = "Threre is a big fog in NYC";
 
-		// + -> um ou mais
+		// * -> um ou mais
 
 		Pattern pattern = null;
 		Matcher matcher = null;
 
 		System.out.println("----------------------QUANTIFICADORES------------------");
 
-		pattern = Pattern.compile("fogo+", Pattern.CASE_INSENSITIVE);
+		pattern = Pattern.compile("fogo*", Pattern.CASE_INSENSITIVE);
 		matcher = pattern.matcher(texto1);
 
 		System.out.println("\n----------------------TEXTO 1------------------");
